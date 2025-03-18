@@ -91,6 +91,7 @@ export default function SelectedProjects() {
           font-weight: 700;
           text-align: center;
           margin-bottom: 40px;
+          color: #0f0f0f;
         }
 
         /* Contenitore righe */
@@ -226,6 +227,15 @@ export default function SelectedProjects() {
           }
           .caseStudiesLink {
             font-size: 16px;
+          }
+          /* Forza il colore dei testi a nero per tutte le card tranne la card nera */
+          .card:not(.cardBlack) h3,
+          .card:not(.cardBlack) p,
+          .card:not(.cardBlack) .cardLabel,
+          .card:not(.cardBlack) .cardNumber,
+          .card:not(.cardBlack) .cardShowcase,
+          .card:not(.cardBlack) .arrow {
+            color: #0f0f0f !important;
           }
         }
       `}</style>
