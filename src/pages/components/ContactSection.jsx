@@ -13,10 +13,20 @@ export default function ContactSection() {
         <span className="contact-badge">CONTACT</span>
         <h2 className="contact-title">We're here to help</h2>
         <div className="contact-info">
-          <p><strong>Call us at:</strong><br />1-800-356-8933</p>
-          <p><strong>Email us:</strong><br /><a href="mailto:support@tecnologia.com">support@tecnologia.com</a></p>
+          <p>
+            <strong>Call us at:</strong>
+            <br />
+            1-800-356-8933
+          </p>
+          <p>
+            <strong>Email us:</strong>
+            <br />
+            <a href="mailto:support@tecnologia.com">support@tecnologia.com</a>
+          </p>
         </div>
-        <button className="contact-button">Schedule a free consultation</button>
+        <button className="contact-button">
+          Schedule a free consultation
+        </button>
       </div>
 
       {/* Immagine spostata più in basso */}
@@ -27,6 +37,7 @@ export default function ContactSection() {
 
       <style jsx>{`
         .contact-section {
+          background-color: #fff; /* Sfondo bianco per tutte le versioni */
           text-align: center;
           padding: 60px 20px;
           opacity: 0;
@@ -48,7 +59,7 @@ export default function ContactSection() {
 
         .contact-badge {
           display: inline-block;
-          background: #E5E7EB;
+          background: #e5e7eb;
           color: #000;
           font-size: 12px;
           font-weight: 600;
@@ -61,7 +72,7 @@ export default function ContactSection() {
         .contact-title {
           font-size: 36px;
           font-weight: 700;
-          color: #0A0D31;
+          color: #0a0d31;
           margin: 10px 0;
         }
 
@@ -80,7 +91,7 @@ export default function ContactSection() {
         }
 
         .contact-info a {
-          color: #1E40AF;
+          color: #1e40af;
           text-decoration: none;
         }
 
@@ -132,6 +143,13 @@ export default function ContactSection() {
           width: 100%;
           height: 100%;
           background: rgba(0, 0, 0, 0.2); /* Overlay leggero */
+        }
+
+        /* Media query per assicurare lo sfondo bianco su dispositivi mobili */
+        @media (max-width: 768px) {
+          .contact-section {
+            background-color: #fff;
+          }
         }
       `}</style>
     </section>
