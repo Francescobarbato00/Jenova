@@ -46,7 +46,7 @@ export default function StackedCardsSection() {
         /* Sezione generale a sfondo bianco */
         .stackedCardsSection {
           background: #ffffff;
-          padding: 60px 20px; /* Spazio intorno al contenuto */
+          padding: 60px 20px;
         }
 
         /* Contenuto iniziale (titolo + pulsanti) */
@@ -64,6 +64,7 @@ export default function StackedCardsSection() {
           line-height: 58px;
           font-weight: 700;
           margin-bottom: 20px;
+          color: #0f0f0f;
         }
 
         /* Pulsanti (filtri) */
@@ -79,6 +80,7 @@ export default function StackedCardsSection() {
           cursor: pointer;
           font-size: 14px;
           font-weight: 500;
+          color: #0f0f0f;
         }
 
         /* Contenitore delle card "stacked" */
@@ -106,16 +108,19 @@ export default function StackedCardsSection() {
           display: flex;
           flex-direction: column;
           justify-content: center;
+          color: #0f0f0f;
         }
         .card h3 {
           margin: 0 0 16px 0;
           font-size: 32px;
           font-weight: 700;
+          color: #0f0f0f;
         }
         .card p {
           margin: 0;
           font-size: 16px;
           line-height: 1.4;
+          color: #0f0f0f;
         }
 
         /* Card specifiche: z-index crescente
@@ -167,6 +172,14 @@ export default function StackedCardsSection() {
           /* Adattiamo lo stacking eliminando eventuali spazi eccessivi */
           .cardsStack {
             height: auto;
+          }
+          /* Forza il colore dei testi a nero */
+          .sectionTitle,
+          .filterButton,
+          .card,
+          .card h3,
+          .card p {
+            color: #0f0f0f !important;
           }
         }
       `}</style>

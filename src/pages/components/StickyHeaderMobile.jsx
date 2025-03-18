@@ -46,17 +46,12 @@ export default function StickyHeaderMobile() {
       </button>
 
       {/* Fullscreen Menu Overlay */}
-      <nav
-        className={`fixed top-0 right-0 h-full w-full bg-white text-black transform transition-transform duration-300 ease-in-out ${menuOpen ? "translate-x-0" : "translate-x-full"}`}
-      >
-        <div className="p-6 flex flex-col h-full">
+      {menuOpen && (
+        <div className="fixed top-0 left-0 w-full h-full bg-white text-black z-50 flex flex-col p-6">
           {/* Titolo e Chiudi */}
           <div className="flex justify-between items-center border-b pb-4">
             <h2 className="text-xl font-bold">Junior Jenova Space</h2>
-            <button
-              onClick={() => setMenuOpen(false)}
-              className="text-black"
-            >
+            <button onClick={() => setMenuOpen(false)} className="text-black">
               <X size={28} />
             </button>
           </div>
@@ -77,7 +72,7 @@ export default function StickyHeaderMobile() {
             </li>
           </ul>
         </div>
-      </nav>
+      )}
     </header>
   );
 }

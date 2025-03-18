@@ -199,6 +199,9 @@ export default function SelectedProjects() {
 
         /* Responsività */
         @media (max-width: 768px) {
+          .selected-projects {
+            background-color: #fff;
+          }
           .sectionTitle {
             font-size: 32px;
             line-height: 40px;
