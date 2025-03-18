@@ -16,6 +16,7 @@ import WhyChooseUs from './components/WhyChooseUs';
 import StickyHeader from './components/StickyHeader';
 import SelectedProjects from './components/SelectedProjects';
 import StackedCards from './components/StackedCards';
+import Chatbot from './components/Chatbot';
 
 export default function Home() {
   return (
@@ -40,6 +41,7 @@ export default function Home() {
       <LatestInsight />
       <ContactBanner />
       <Footer />
+      <Chatbot />
       {/* Altri componenti o contenuti della pagina */}
     </>
   );

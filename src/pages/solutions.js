@@ -1,3 +1,4 @@
+import Chatbot from './components/Chatbot';
 import ConsultationSection from './components/ConsultationSection';
 import Footer from './components/Footer';
 import HeaderBlue from './components/HeaderBlue';
@@ -26,6 +27,7 @@ export default function Solution() {
       <WhyUsSection />
       <ConsultationSection />
       <Footer />
+      <Chatbot />
       {/* Altri componenti o contenuti della pagina */}
     </>
   );

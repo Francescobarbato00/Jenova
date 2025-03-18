@@ -1,4 +1,5 @@
 import BetterTogetherSection from './components/BetterTogetherSection';
+import Chatbot from './components/Chatbot';
 import ConsultationSection from './components/ConsultationSection';
 import CoreValuesSection from './components/CoreValuesSection';
 import Footer from './components/Footer';
@@ -27,6 +28,7 @@ export default function About() {
      <BetterTogetherSection />
      <ConsultationSection />
       <Footer />
+      <Chatbot />
       {/* Altri componenti o contenuti della pagina */}
     </>
   );

@@ -1,3 +1,4 @@
+import Chatbot from './components/Chatbot';
 import ConsultationSection from './components/ConsultationSection';
 import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
@@ -21,6 +22,7 @@ export default function Contact() {
       <OfficeLocations />
       <ConsultationSection />
       <Footer />
+      <Chatbot />
       {/* Altri componenti o contenuti della pagina */}
     </>
   );
