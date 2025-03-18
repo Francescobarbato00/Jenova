@@ -8,71 +8,115 @@ export default function StickyHeaderMobile() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 80) {
-        setShowHeader(true);
-      } else {
-        setShowHeader(false);
-      }
+      setShowHeader(window.scrollY > 80);
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Disabilita lo scroll quando il menu è aperto
   useEffect(() => {
-    if (menuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
+    document.body.style.overflow = menuOpen ? "hidden" : "auto";
     return () => {
       document.body.style.overflow = "auto";
     };
   }, [menuOpen]);
 
+  // Chiude il menu cliccando sull'overlay
+  const handleOverlayClick = () => {
+    setMenuOpen(false);
+  };
+
   return (
-    <header
-      className={`fixed top-0 left-0 w-full p-4 bg-white text-black flex justify-between items-center md:hidden z-50 shadow-md border-b transition-transform duration-300 ${showHeader ? "translate-y-0" : "-translate-y-full"}`}
-    >
-      {/* Logo */}
-      <div className="text-lg font-bold tracking-wide">Junior Jenova Space</div>
-
-      {/* Menu Toggle */}
-      <button
-        onClick={() => setMenuOpen(!menuOpen)}
-        className="text-black focus:outline-none z-50"
+    <>
+      {/* Header Mobile */}
+      <header
+        className={`fixed top-0 left-0 w-full p-4 bg-white text-black flex justify-between items-center md:hidden z-50 shadow-md border-b transition-transform duration-300 ${
+          showHeader ? "translate-y-0" : "-translate-y-full"
+        }`}
       >
-        {menuOpen ? <X size={28} /> : <Menu size={28} />}
-      </button>
+        {/* Logo */}
+        <div className="text-lg font-bold tracking-wide">
+          Junior Jenova Space
+        </div>
 
-      {/* Fullscreen Menu Overlay */}
-      {menuOpen && (
-        <div className="fixed top-0 left-0 w-full h-full bg-white text-black z-50 flex flex-col p-6">
-          {/* Titolo e Chiudi */}
-          <div className="flex justify-between items-center border-b pb-4">
-            <h2 className="text-xl font-bold">Junior Jenova Space</h2>
-            <button onClick={() => setMenuOpen(false)} className="text-black">
-              <X size={28} />
-            </button>
-          </div>
+        {/* Bottone Menu */}
+        <button
+          onClick={() => setMenuOpen(true)}
+          className="text-black focus:outline-none z-50"
+        >
+          <Menu size={28} />
+        </button>
+      </header>
+
+      {/* Fullscreen Menu Overlay (z-index più alto dell'header) */}
+      <div
+        onClick={handleOverlayClick}
+        className={`fixed top-0 left-0 w-full h-full bg-white text-black z-[9999] transform transition-transform duration-300 ${
+          menuOpen ? "translate-y-0" : "-translate-y-full"
+        }`}
+      >
+        {/* Contenuto del menu: stoppa la propagazione del click per evitare chiusure involontarie */}
+        <div
+          onClick={(e) => e.stopPropagation()}
+          className="flex flex-col justify-center items-center h-full relative"
+        >
+          {/* Bottone Chiudi in alto a destra */}
+          <button
+            onClick={() => setMenuOpen(false)}
+            className="absolute top-6 right-6 text-black focus:outline-none"
+          >
+            <X size={32} />
+          </button>
+
+          {/* Logo (opzionale) */}
+          <h2 className="text-2xl font-bold mb-8">
+            Junior Jenova Space
+          </h2>
 
           {/* Links */}
-          <ul className="flex flex-col gap-6 mt-10 px-6 text-lg font-medium">
-            <li className="border-b pb-2">
-              <Link href="/" onClick={() => setMenuOpen(false)} className="hover:text-blue-600 border-b-2 border-transparent hover:border-blue-600 transition-all">Home</Link>
-            </li>
-            <li className="border-b pb-2">
-              <Link href="/solutions" onClick={() => setMenuOpen(false)} className="hover:text-blue-600 border-b-2 border-transparent hover:border-blue-600 transition-all">Per le Aziende</Link>
-            </li>
-            <li className="border-b pb-2">
-              <Link href="/about" onClick={() => setMenuOpen(false)} className="hover:text-blue-600 border-b-2 border-transparent hover:border-blue-600 transition-all">Chi Siamo</Link>
-            </li>
-            <li className="border-b pb-2">
-              <Link href="/contact" onClick={() => setMenuOpen(false)} className="hover:text-blue-600 border-b-2 border-transparent hover:border-blue-600 transition-all">Contatti</Link>
-            </li>
-          </ul>
+          <nav>
+            <ul className="flex flex-col items-center space-y-8 text-xl font-medium">
+              <li>
+                <Link
+                  href="/"
+                  onClick={() => setMenuOpen(false)}
+                  className="hover:text-gray-700 transition-colors"
+                >
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/solutions"
+                  onClick={() => setMenuOpen(false)}
+                  className="hover:text-gray-700 transition-colors"
+                >
+                  Per le Aziende
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/about"
+                  onClick={() => setMenuOpen(false)}
+                  className="hover:text-gray-700 transition-colors"
+                >
+                  Chi Siamo
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/contact"
+                  onClick={() => setMenuOpen(false)}
+                  className="hover:text-gray-700 transition-colors"
+                >
+                  Contatti
+                </Link>
+              </li>
+            </ul>
+          </nav>
         </div>
-      )}
-    </header>
+      </div>
+    </>
   );
 }

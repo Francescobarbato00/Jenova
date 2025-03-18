@@ -160,7 +160,6 @@ export default function ContactBanner() {
         /* Media Query per dispositivi mobili */
         @media (max-width: 768px) {
           .contact-banner {
-            background: #fff !important;
             padding: 20px 10px !important;
           }
           .container {
