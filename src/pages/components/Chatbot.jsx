@@ -90,7 +90,7 @@ export default function Chatbot() {
         </div>
       )}
 
-      {/* Animazione apertura e stili specifici */}
+      {/* Animazione apertura e stili */}
       <style>{`
         @keyframes fadeIn {
           from { opacity: 0; transform: translateY(20px); }
@@ -99,9 +99,17 @@ export default function Chatbot() {
         .animate-fadeIn {
           animation: fadeIn 0.3s ease-out;
         }
-        /* Modifiche per mobile: full screen per il chatbot e icona sopra tutto */
+        /* Entrambi (icona e box) sovrappongono tutto */
+        .chatbot-button, .chatbot-box {
+          z-index: 9999;
+        }
+        /* Versione Desktop mantiene il layout standard */
+        
+        /* Versione Mobile: chatbot in full screen */
         @media (max-width: 768px) {
           .chatbot-box {
+            top: 0;
+            left: 0;
             bottom: 0;
             right: 0;
             width: 100vw;
@@ -109,13 +117,18 @@ export default function Chatbot() {
             border-radius: 0;
             border: none;
             box-shadow: none;
+            /* Utilizza flex per distribuire le sezioni in verticale */
+            display: flex;
+            flex-direction: column;
           }
-          .chatbot-box > .bg-blue-600 {
-            /* Intestazione su mobile con padding maggiore se necessario */
-            padding: 1rem;
+          /* Regola l'altezza dell'area messaggi, sottraendo l'altezza dell'header e della sezione quick questions */
+          .chatbot-box > div:nth-child(2) {
+            height: calc(100vh - 120px);
           }
-          .chatbot-button {
-            z-index: 9999;
+          /* Posiziona l'header in modo che sia sempre visibile in cima */
+          .chatbot-box > div:first-child {
+            position: relative;
+            z-index: 10000;
           }
         }
       `}</style>
