@@ -1,35 +1,46 @@
-import BetterTogetherSection from './components/BetterTogetherSection';
-import Chatbot from './components/Chatbot';
-import ConsultationSection from './components/ConsultationSection';
-import CoreValuesSection from './components/CoreValuesSection';
-import Footer from './components/Footer';
-import HeaderBlue from './components/HeaderBlue';
-import JoinUsSection from './components/JoinUsSection';
-
-// IMPORT DELLO STICKY HEADER
-import StickyHeader from './components/StickyHeader';
-import TimelineSection from './components/TimelineSection';
-import WhyUsSection from './components/WhyUsSection';
-
+import { useEffect, useState } from "react";
+import BetterTogetherSection from "./components/BetterTogetherSection";
+import Chatbot from "./components/Chatbot";
+import ConsultationSection from "./components/ConsultationSection";
+import CoreValuesSection from "./components/CoreValuesSection";
+import Footer from "./components/Footer";
+import HeaderBlue from "./components/HeaderBlue";
+import HeaderBlueMobile from "./components/HeaderBlueMobile"; // Import mobile header
+import JoinUsSection from "./components/JoinUsSection";
+import StickyHeader from "./components/StickyHeader";
+import StickyHeaderMobile from "./components/StickyHeaderMobile"; // Import mobile sticky header
+import TimelineSection from "./components/TimelineSection";
+import WhyUsSection from "./components/WhyUsSection";
 
 export default function About() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    checkScreenSize();
+    window.addEventListener("resize", checkScreenSize);
+    return () => window.removeEventListener("resize", checkScreenSize);
+  }, []);
+
   return (
     <>
-      {/* Header originale (trasparente, in assoluto) */}
-      <HeaderBlue />
+      {/* Header (versione mobile o desktop in base allo schermo) */}
+      {isMobile ? <HeaderBlueMobile /> : <HeaderBlue />}
 
-      {/* Header "sticky" che compare dopo lo scroll */}
-      <StickyHeader />
+      {/* Sticky Header (versione mobile o desktop in base allo schermo) */}
+      {isMobile ? <StickyHeaderMobile /> : <StickyHeader />}
 
-      {/* Sezione Hero a tutta pagina */}
-     <TimelineSection />
+      {/* Sezione Hero a tutta pagina e altre sezioni */}
+      <TimelineSection />
       <CoreValuesSection />
       <JoinUsSection />
-     <BetterTogetherSection />
-     <ConsultationSection />
+      <BetterTogetherSection />
+      <ConsultationSection />
       <Footer />
       <Chatbot />
-      {/* Altri componenti o contenuti della pagina */}
     </>
   );
 }
