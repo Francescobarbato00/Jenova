@@ -33,13 +33,13 @@ export default function StickyHeader() {
             <Link href="/">Home</Link>
           </li>
           <li>
-            <Link href="#">Per le Aziende</Link>
+            <Link href="/solutions">Per le Aziende</Link>
           </li>
           <li>
-            <Link href="#">Chi Siamo</Link>
+            <Link href="/about">Chi Siamo</Link>
           </li>
           <li>
-            <Link href="#">Contatti</Link>
+            <Link href="/contact">Contatti</Link>
           </li>
         </ul>
       </nav>
