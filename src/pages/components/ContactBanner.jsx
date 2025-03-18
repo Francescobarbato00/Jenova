@@ -1,5 +1,3 @@
-// components/ContactBanner.js
-
 import React from 'react';
 
 export default function ContactBanner() {
@@ -158,6 +156,40 @@ export default function ContactBanner() {
         .input-field::placeholder {
           color: #000;
           opacity: 0.8;
+        }
+        /* Media Query per dispositivi mobili */
+        @media (max-width: 768px) {
+          .contact-banner {
+            padding: 20px 10px !important;
+          }
+          .container {
+            flex-direction: column;
+            gap: 20px;
+          }
+          .info h2 {
+            font-size: 28px;
+            line-height: 32px;
+            margin-bottom: 16px;
+          }
+          .contact-detail {
+            font-size: 14px;
+          }
+          .contact-form {
+            grid-template-columns: 1fr;
+          }
+          .textarea-field {
+            grid-column: auto;
+          }
+          .checkbox-container {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+          }
+          .checkbox-container button {
+            width: 100%;
+            font-size: 14px;
+            padding: 10px 16px;
+          }
         }
       `}</style>
     </section>

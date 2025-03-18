@@ -3,28 +3,40 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 
 export default function LogosCarousel() {
-  // Array originale: solo 5 loghi
-  const logos = [
-    '/1.svg',
-    '/2.svg',
-    '/3.svg',
-    '/4.svg',
-    '/5.svg'
-  ];
+  // Array originale
+  const logos = ['/1.svg', '/2.svg', '/3.svg', '/4.svg', '/5.svg'];
 
-  // Numero di loghi visibili contemporaneamente
-  const visibleLogos = 3;
-  // Array esteso: per l'effetto infinito, duplico i primi "visibleLogos" elementi
+  // Valore di default: 3 loghi per la versione desktop
+  const [visibleLogos, setVisibleLogos] = useState(3);
+
+  // Al mount e al resize, controlliamo la larghezza dello schermo:
+  // - se è sotto i 768px, passiamo a 2 loghi (o 1, se preferisci)
+  // - altrimenti restiamo a 3
+  useEffect(() => {
+    function handleResize() {
+      if (window.innerWidth < 768) {
+        setVisibleLogos(2); // oppure 1 se vuoi mostrarne solo uno su mobile
+      } else {
+        setVisibleLogos(3);
+      }
+    }
+
+    // Chiamata iniziale e listener
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Array esteso per l’effetto “infinito”
   const extendedLogos = useMemo(
     () => [...logos, ...logos.slice(0, visibleLogos)],
     [logos, visibleLogos]
   );
 
-  // Ref per misurare la larghezza del container
   const containerRef = useRef(null);
   const [containerWidth, setContainerWidth] = useState(0);
 
-  // Aggiorna la larghezza al mount e al resize
+  // Misura la larghezza del container
   useEffect(() => {
     if (containerRef.current) {
       setContainerWidth(containerRef.current.clientWidth);
@@ -38,19 +50,20 @@ export default function LogosCarousel() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Calcola la larghezza in pixel di ogni slot (ogni logo occupa 1/3 del container)
+  // Calcola la larghezza di ogni “slot” in base a visibleLogos
   const slotWidth = containerWidth / visibleLogos;
-  // Il massimo indice valido nell'array esteso (extendedLogos.length - visibleLogos)
-  const maxIndex = extendedLogos.length - visibleLogos; // 8 - 3 = 5
+  // Il massimo indice raggiungibile nell’array esteso
+  const maxIndex = extendedLogos.length - visibleLogos;
 
-  // Stati per indice corrente, per gestire il drag e per disabilitare temporaneamente la transizione
   const [currentIndex, setCurrentIndex] = useState(0);
   const [disableTransition, setDisableTransition] = useState(false);
+
+  // Gestione drag
   const [isDragging, setIsDragging] = useState(false);
   const [startPosition, setStartPosition] = useState(0);
   const [dragOffset, setDragOffset] = useState(0);
 
-  // Auto-scroll: ogni 3 secondi incrementa l'indice se non siamo in fase di drag
+  // Auto-scroll
   const autoScrollIntervalRef = useRef(null);
   const startAutoScroll = () => {
     autoScrollIntervalRef.current = setInterval(() => {
@@ -58,8 +71,6 @@ export default function LogosCarousel() {
         if (prevIndex < maxIndex) {
           return prevIndex + 1;
         }
-        // Se siamo all'ultimo slide (slide clone), non incrementiamo;
-        // l'effetto infinito verrà gestito da un useEffect che ripristina a 0
         return prevIndex;
       });
     }, 3000);
@@ -71,6 +82,7 @@ export default function LogosCarousel() {
     }
   };
 
+  // Avvia auto-scroll se non stiamo facendo drag
   useEffect(() => {
     if (!isDragging && containerWidth) {
       startAutoScroll();
@@ -78,18 +90,18 @@ export default function LogosCarousel() {
     return () => stopAutoScroll();
   }, [isDragging, containerWidth]);
 
-  // Quando l'indice corrente raggiunge il max (slide clone), dopo la transizione lo resetto a 0
+  // Se l’indice raggiunge maxIndex, dopo la transizione lo resettiamo a 0
   useEffect(() => {
     if (currentIndex === maxIndex && !isDragging) {
       const timeout = setTimeout(() => {
         setDisableTransition(true);
         setCurrentIndex(0);
-      }, 500); // durata della transizione
+      }, 500);
       return () => clearTimeout(timeout);
     }
   }, [currentIndex, isDragging, maxIndex]);
 
-  // Dopo il reset, riabilito la transizione
+  // Dopo il reset, riabilitiamo la transizione
   useEffect(() => {
     if (disableTransition) {
       const timeout = setTimeout(() => {
@@ -99,19 +111,19 @@ export default function LogosCarousel() {
     }
   }, [disableTransition]);
 
-  // Gestione del drag/touch
-  const handleMouseDown = (e) => {
+  // Funzioni per il drag
+  const handleMouseDown = e => {
     stopAutoScroll();
     setIsDragging(true);
     setStartPosition(e.clientX);
   };
-  const handleMouseMove = (e) => {
+  const handleMouseMove = e => {
     if (!isDragging) return;
     const offset = e.clientX - startPosition;
     setDragOffset(offset);
   };
   const finalizeDrag = () => {
-    const threshold = slotWidth / 4; // soglia per cambiare slide
+    const threshold = slotWidth / 4;
     let newIndex = currentIndex;
     if (dragOffset > threshold && currentIndex > 0) {
       newIndex = currentIndex - 1;
@@ -123,7 +135,6 @@ export default function LogosCarousel() {
     setDragOffset(0);
     startAutoScroll();
 
-    // Se con il drag si raggiunge il max, attivo il reset (infinite scroll)
     if (newIndex === maxIndex) {
       const timeout = setTimeout(() => {
         setDisableTransition(true);
@@ -139,12 +150,12 @@ export default function LogosCarousel() {
   const handleMouseLeave = () => {
     if (isDragging) finalizeDrag();
   };
-  const handleTouchStart = (e) => {
+  const handleTouchStart = e => {
     stopAutoScroll();
     setIsDragging(true);
     setStartPosition(e.touches[0].clientX);
   };
-  const handleTouchMove = (e) => {
+  const handleTouchMove = e => {
     if (!isDragging) return;
     const offset = e.touches[0].clientX - startPosition;
     setDragOffset(offset);
@@ -155,9 +166,22 @@ export default function LogosCarousel() {
   };
 
   return (
-    <section style={{ backgroundColor: '#fff', padding: '40px 0' }}>
+    <section
+      className="logos-carousel-section"
+      style={{
+        backgroundColor: '#fff',
+        padding: '40px 0' // stile desktop invariato
+      }}
+    >
+      <style>{`
+        /* Esempio di piccola modifica per ridurre il padding su mobile */
+        @media (max-width: 768px) {
+          .logos-carousel-section {
+            padding: 20px 0 !important;
+          }
+        }
+      `}</style>
 
-      {/* Contenitore esterno: 100% di larghezza, overflow nascosto, supporta drag/touch */}
       <div
         ref={containerRef}
         style={{
@@ -174,7 +198,6 @@ export default function LogosCarousel() {
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
       >
-        {/* Track interno con tutti i loghi (array esteso) in fila */}
         <div
           style={{
             display: 'flex',

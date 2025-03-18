@@ -1,5 +1,3 @@
-// components/LatestInsight.js
-
 import React from 'react';
 
 export default function LatestInsight() {

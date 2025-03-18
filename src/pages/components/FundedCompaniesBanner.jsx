@@ -1,10 +1,9 @@
-// components/FundedCompaniesBanner.js
-
 import React from 'react';
 
 export default function FundedCompaniesBanner() {
   return (
     <section
+      className="funded-companies-banner"
       style={{
         backgroundColor: '#fff',
         padding: '80px 20px'
@@ -42,16 +41,18 @@ export default function FundedCompaniesBanner() {
 
         {/* Contenitore statistiche + bottone */}
         <div
+          className="stats-and-button"
           style={{
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            flexWrap: 'wrap', // in caso di schermi piccoli
+            flexWrap: 'wrap',
             gap: '20px'
           }}
         >
           {/* Statistiche */}
           <div
+            className="stats-container"
             style={{
               display: 'flex',
               gap: '40px',
@@ -180,6 +181,37 @@ export default function FundedCompaniesBanner() {
           </div>
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 768px) {
+          .funded-companies-banner {
+            padding: 40px 10px !important;
+          }
+          .funded-companies-banner h1 {
+            font-size: 32px !important;
+            line-height: 40px !important;
+            margin-bottom: 16px !important;
+          }
+          .funded-companies-banner hr {
+            margin-bottom: 20px !important;
+          }
+          .stats-and-button {
+            flex-direction: column;
+            align-items: center;
+          }
+          .stats-container {
+            justify-content: center;
+          }
+          .stats-container > div {
+            min-width: auto !important;
+            text-align: center;
+          }
+          .funded-companies-banner a {
+            font-size: 14px !important;
+            padding: 10px 20px !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }

@@ -77,6 +77,26 @@ export default function AwardWinningServices() {
           color: #1E40AF;
           text-decoration: underline;
         }
+
+        /* Media Query per dispositivi mobili */
+        @media (max-width: 768px) {
+          .servicesContainer {
+            flex-direction: column;
+            align-items: center;
+          }
+          .serviceCard {
+            margin-bottom: 20px;
+          }
+          .servicesLinkContainer {
+            text-align: center !important;
+            margin-top: 20px !important;
+          }
+          /* Se necessario, riduci anche la dimensione del titolo */
+          .servicesContainer h2 {
+            font-size: 32px !important;
+            line-height: 40px !important;
+          }
+        }
       `}</style>
 
       {/* Titolo principale */}

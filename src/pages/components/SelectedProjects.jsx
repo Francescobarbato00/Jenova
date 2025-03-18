@@ -70,11 +70,11 @@ export default function SelectedProjects() {
         .labelContainer {
           display: flex;
           justify-content: center;
-          margin-bottom: 8px; /* Spazio sotto il badge */
+          margin-bottom: 8px;
         }
         .sectionLabel {
           display: inline-block;
-          background-color: #f5f5f5; /* sfondo chiaro */
+          background-color: #f5f5f5;
           border-radius: 8px;
           padding: 4px 8px;
           font-size: 14px;
@@ -83,7 +83,7 @@ export default function SelectedProjects() {
           text-transform: uppercase;
         }
 
-        /* Titolo con stile richiesto */
+        /* Titolo sezione */
         .sectionTitle {
           font-family: "Inter Tight", sans-serif;
           font-size: 48px;
@@ -97,8 +97,7 @@ export default function SelectedProjects() {
         .row {
           display: flex;
           width: 100%;
-          /* Altezza fissa per mantenere la stessa dimensione tra la riga superiore e inferiore */
-          height: 400px; /* Regola a piacere */
+          height: 400px;
           margin-bottom: 20px;
         }
         .topRow {
@@ -114,13 +113,10 @@ export default function SelectedProjects() {
           display: flex;
           flex-direction: column;
           overflow: hidden;
-
-          /* Immagine di sfondo */
           background-position: center;
           background-repeat: no-repeat;
           background-size: 40%;
         }
-
         .cardNumber {
           font-size: 14px;
           font-weight: 700;
@@ -144,7 +140,7 @@ export default function SelectedProjects() {
         .cardDescription {
           font-size: 16px;
           font-weight: 400;
-          margin-bottom: auto; /* Spinge la label in basso */
+          margin-bottom: auto;
           max-width: 80%;
         }
         .cardLabel {
@@ -160,11 +156,11 @@ export default function SelectedProjects() {
           font-weight: 700;
         }
 
-        /* Card specifiche con immagini di sfondo */
+        /* Card specifiche */
         .cardLilac {
           background-color: #edeaff;
-          background-image: url("/mani.png"); /* Percorso immagine */
-          margin-right: 20px; /* Spazio orizzontale tra la card lillà e la card beige */
+          background-image: url("/mani.png");
+          margin-right: 20px;
         }
         .cardBeige {
           background-color: #fdf5f0;
@@ -192,24 +188,41 @@ export default function SelectedProjects() {
           font-family: "Inter Tight", sans-serif;
           font-size: 14px;
           font-weight: 500;
-          color: #0f0f0f; /* colore base */
+          color: #0f0f0f;
           text-decoration: none;
           transition: color 0.2s ease;
         }
         .caseStudiesLink:hover {
           text-decoration: underline;
-          color: #1e40af; /* blu in hover */
+          color: #1e40af;
         }
 
         /* Responsività */
         @media (max-width: 768px) {
+          .sectionTitle {
+            font-size: 32px;
+            line-height: 40px;
+          }
           .row {
             flex-direction: column;
-            height: auto; /* Permette alle card di crescere in altezza su mobile */
+            height: auto;
+            margin-bottom: 20px;
+          }
+          .topRow {
+            margin-bottom: 20px;
+          }
+          .card {
+            margin: 0 0 20px 0;
+            height: auto;
           }
           .cardLilac {
             margin-right: 0;
-            margin-bottom: 20px;
+          }
+          .labelContainer {
+            justify-content: center;
+          }
+          .caseStudiesLink {
+            font-size: 16px;
           }
         }
       `}</style>

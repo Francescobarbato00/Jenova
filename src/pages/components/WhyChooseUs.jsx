@@ -5,14 +5,27 @@ import React from 'react';
 export default function WhyChooseUs() {
   return (
     <section
+      className="why-choose-us-section"
       style={{
         backgroundColor: '#fff',   // sfondo bianco
         padding: '80px 20px',      // spaziatura interna
-        textAlign: 'left'          // testo allineato a sinistra
+        textAlign: 'left'          // testo allineato a sinistra (desktop)
       }}
     >
-      {/* Inseriamo uno style block con la classe per il pulsante */}
       <style>{`
+        /* Stili comuni */
+        .why-choose-us-container {
+          max-width: 800px;
+          margin: 0 auto;
+        }
+        .why-choose-us-title {
+          font-family: "Inter Tight", sans-serif;
+          font-weight: 700;
+          font-size: 42px;
+          line-height: 58px;
+          color: #0F0F0F;
+          margin-bottom: 40px;
+        }
         .ctaButton {
           display: inline-block;
           background-color: #E8ECFF;
@@ -29,20 +42,31 @@ export default function WhyChooseUs() {
           background-color: #1E40AF; /* Blu scuro in hover */
           color: #ffffff;            /* Testo bianco in hover */
         }
+
+        /* Media Query per versioni responsive */
+        @media (max-width: 768px) {
+          .why-choose-us-section {
+            /* Riduciamo il padding per non comprimere il contenuto */
+            padding: 40px 20px !important;
+            text-align: center !important; /* facoltativo se preferisci centrare su mobile */
+          }
+          .why-choose-us-title {
+            font-size: 28px !important;
+            line-height: 36px !important;
+            margin-bottom: 24px !important;
+          }
+          .ctaButton {
+            font-size: 16px !important;
+            padding: 12px 24px !important;
+          }
+        }
       `}</style>
 
-      <div style={{ maxWidth: '800px', margin: '0 auto' }}>
-        <h2
-          style={{
-            fontFamily: '"Inter Tight", sans-serif',
-            fontWeight: 700,
-            fontSize: '42px',
-            lineHeight: '58px',
-            color: '#0F0F0F',
-            marginBottom: '40px'
-          }}
-        >
-          Siamo un’associazione no-profit e apolitica gestita interamente da studenti universitari. Il nostro obiettivo è ridurre il divario tra teoria e pratica nel mondo del lavoro utilizzando il metodo del “learning by doing“.
+      <div className="why-choose-us-container">
+        <h2 className="why-choose-us-title">
+          Siamo un’associazione no-profit e apolitica gestita interamente da studenti universitari. 
+          Il nostro obiettivo è ridurre il divario tra teoria e pratica nel mondo del lavoro 
+          utilizzando il metodo del “learning by doing“.
         </h2>
 
         {/* Pulsante CTA con classe ctaButton */}
@@ -53,5 +77,3 @@ export default function WhyChooseUs() {
     </section>
   );
 }
-
-

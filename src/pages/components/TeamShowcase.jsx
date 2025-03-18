@@ -1,4 +1,3 @@
-// components/TeamShowcase.js
 import React from 'react';
 
 export default function TeamShowcase() {
@@ -119,6 +118,28 @@ export default function TeamShowcase() {
           font-size: 14px;
           color: #6b7280;
           margin: 0;
+        }
+
+        /* Media Query per dispositivi mobili */
+        @media (max-width: 768px) {
+          .team-showcase {
+            padding: 40px 10px;
+          }
+          .header h2 {
+            font-size: 32px;
+            line-height: 40px;
+            margin-bottom: 12px;
+          }
+          .view-all {
+            font-size: 14px;
+          }
+          .cards {
+            justify-content: center;
+          }
+          .card {
+            flex: 0 0 calc(50% - 10px);
+            min-width: auto;
+          }
         }
       `}</style>
     </section>

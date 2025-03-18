@@ -54,7 +54,7 @@ export default function StackedCardsSection() {
           max-width: 1200px;
           margin: 0 auto;
           text-align: center;
-          margin-bottom: 80px; /* spazio prima delle card */
+          margin-bottom: 80px; /* Spazio prima delle card */
         }
 
         /* Titolo con stile richiesto */
@@ -86,9 +86,8 @@ export default function StackedCardsSection() {
            + un po' di spazio extra in fondo (ad es. 800px) */
         .cardsStack {
           position: relative;
-          height: calc(3 * 620px + 800px); 
+          height: calc(3 * 620px + 800px);
           /* 3 card da 620px di altezza ciascuna + 800px di margine finale */
-          /* Regola a piacere se vuoi più/meno spazio sotto l'ultima card */
         }
 
         /* Card generiche: dimensione fissa 1280x620, sticky in alto */
@@ -138,10 +137,36 @@ export default function StackedCardsSection() {
         @media (max-width: 1400px) {
           .card {
             width: 90%;
-            height: auto; /* se non vuoi forzare 620px su schermi piccoli */
+            height: auto; /* Consente di non forzare 620px su schermi piccoli */
           }
           .cardsStack {
-            height: auto; /* potresti passare a un layout diverso su mobile */
+            height: auto;
+          }
+        }
+
+        /* Ulteriore responsività per dispositivi molto piccoli */
+        @media (max-width: 768px) {
+          .sectionTitle {
+            font-size: 32px;
+            line-height: 40px;
+          }
+          .buttonsRow {
+            flex-direction: column;
+            gap: 8px;
+          }
+          .filterButton {
+            padding: 8px 16px;
+            font-size: 12px;
+          }
+          /* Per le card, rimuoviamo la posizione sticky per evitare comportamenti indesiderati */
+          .card {
+            position: relative;
+            width: 100%;
+            margin-bottom: 20px;
+          }
+          /* Adattiamo lo stacking eliminando eventuali spazi eccessivi */
+          .cardsStack {
+            height: auto;
           }
         }
       `}</style>

@@ -1,4 +1,3 @@
-// components/Footer.js
 import React from 'react';
 import Link from 'next/link';
 import { FaLinkedin, FaGithub, FaTwitter, FaFacebook, FaYoutube } from 'react-icons/fa';
@@ -64,10 +63,7 @@ export default function Footer() {
             {/* Checkbox e label */}
             <div style={{ marginBottom: '20px' }}>
               <label style={{ fontSize: '14px', lineHeight: '1.5' }}>
-                <input
-                  type="checkbox"
-                  style={{ marginRight: '8px' }}
-                />
+                <input type="checkbox" style={{ marginRight: '8px' }} />
                 I agree to the Privacy Policy and give my permission to process my personal data
                 for the purposes specified in the Privacy Policy.
               </label>
@@ -233,7 +229,7 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Stili CSS in linea per le icone con effetto hover */}
+      {/* Stili per le icone con effetto hover */}
       <style jsx>{`
         .footer-icon {
           color: blue;
@@ -241,6 +237,37 @@ export default function Footer() {
         }
         .footer-icon:hover {
           transform: scale(1.1);
+        }
+        /* Media Query per dispositivi mobili */
+        @media (max-width: 768px) {
+          footer {
+            padding: 40px 10px !important;
+          }
+          div[style*="display: flex"][style*="flex-wrap: wrap"][style*="justify-content: space-between"] {
+            flex-direction: column;
+            gap: 20px;
+          }
+          h2 {
+            font-size: 32px !important;
+            margin-bottom: 16px !important;
+          }
+          input[type="text"],
+          input[type="email"] {
+            padding: 10px !important;
+            font-size: 14px;
+          }
+          button {
+            padding: 10px 20px !important;
+            font-size: 14px;
+          }
+          /* Riduzione dei margini nelle sezioni dei link inferiori */
+          ul li {
+            margin-bottom: 6px !important;
+          }
+          /* Riduzione dei font per il copyright */
+          div[style*="font-size: 14px"] {
+            font-size: 12px !important;
+          }
         }
       `}</style>
     </footer>

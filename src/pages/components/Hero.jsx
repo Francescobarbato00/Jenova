@@ -5,13 +5,13 @@ import React from 'react';
 export default function Hero() {
   return (
     <section
+      className="hero-section"
       style={{
-        // Sfondo
+        // Stili desktop invariati
         backgroundImage: 'url("/sfondo.jpg")',
         backgroundSize: 'cover',
         backgroundPosition: 'center right',
         backgroundRepeat: 'no-repeat',
-        // Dimensioni e layout
         width: '100%',
         minHeight: '100vh',
         display: 'flex',
@@ -34,9 +34,35 @@ export default function Hero() {
         .slideUp {
           animation: slideUp 2s ease-in-out forwards;
         }
+
+        /* Media query per rendere la Hero responsive */
+        @media (max-width: 768px) {
+          .hero-section {
+            /* Mantiene l'altezza dell'intero viewport su mobile */
+            min-height: 100vh !important;
+            /* Centra il background orizzontalmente */
+            background-position: center !important;
+            /* Riduce il padding laterale per evitare tagli del testo */
+            padding: 20px !important;
+          }
+          .hero-container {
+            margin-left: 0 !important;
+            padding: 20px 0 !important;
+          }
+          .hero-title {
+            font-size: 48px !important;
+            line-height: 56px !important;
+            margin-bottom: 16px !important;
+          }
+          .hero-paragraph {
+            font-size: 20px !important;
+            line-height: 28px !important;
+          }
+        }
       `}</style>
 
       <div
+        className="hero-container"
         style={{
           maxWidth: '700px',
           marginLeft: '60px',
@@ -44,7 +70,7 @@ export default function Hero() {
         }}
       >
         <h1
-          className="fadeIn"
+          className="hero-title fadeIn"
           style={{
             fontFamily: '"Inter Tight", sans-serif',
             fontWeight: 600,
@@ -59,7 +85,7 @@ export default function Hero() {
         </h1>
 
         <p
-          className="slideUp"
+          className="hero-paragraph slideUp"
           style={{
             fontFamily: 'Helvetica, sans-serif',
             fontWeight: 400,
