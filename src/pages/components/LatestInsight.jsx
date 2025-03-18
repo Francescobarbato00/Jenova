@@ -66,11 +66,12 @@ export default function LatestInsight() {
         }
         .latestInsightTitle {
           font-family: "Inter Tight", sans-serif;
-          font-size: 32px;
+          font-size: 48px;
+          line-height: 58px;
           font-weight: 700;
           color: #0f0f0f;
           margin-bottom: 40px;
-          text-align: center;
+          text-align: left;
         }
         .cardsWrapper {
           display: flex;

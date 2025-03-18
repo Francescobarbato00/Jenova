@@ -14,6 +14,8 @@ import WhyChooseUs from './components/WhyChooseUs';
 
 // IMPORT DELLO STICKY HEADER
 import StickyHeader from './components/StickyHeader';
+import SelectedProjects from './components/SelectedProjects';
+import StackedCards from './components/StackedCards';
 
 export default function Home() {
   return (
@@ -31,6 +33,8 @@ export default function Home() {
       <ScrollingLogos />
       <TeamSection />
       <AwardWinningServices />
+      <SelectedProjects />
+      <StackedCards />
       <FundedCompaniesBanner />
       <TeamShowcase />
       <LatestInsight />

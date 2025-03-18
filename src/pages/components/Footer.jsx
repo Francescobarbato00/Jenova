@@ -203,7 +203,7 @@ export default function Footer() {
           }}
         >
           <div style={{ fontSize: '14px', color: '#666' }}>
-            © 2025 VamTam. All rights reserved. &nbsp;
+            © 2025 Junio Jenova Space. All rights reserved. &nbsp;
             <Link href="#" style={{ color: '#666', textDecoration: 'none', marginRight: '8px' }}>
               Terms & Conditions
             </Link>

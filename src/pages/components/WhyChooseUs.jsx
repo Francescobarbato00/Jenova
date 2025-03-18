@@ -36,22 +36,22 @@ export default function WhyChooseUs() {
           style={{
             fontFamily: '"Inter Tight", sans-serif',
             fontWeight: 700,
-            fontSize: '48px',
+            fontSize: '42px',
             lineHeight: '58px',
             color: '#0F0F0F',
             marginBottom: '40px'
           }}
         >
-          Experienced teams and a agile framework, we prioritise 
-          the commercial goals of the client to deliver 
-          the highest business value.
+          Siamo un’associazione no-profit e apolitica gestita interamente da studenti universitari. Il nostro obiettivo è ridurre il divario tra teoria e pratica nel mondo del lavoro utilizzando il metodo del “learning by doing“.
         </h2>
 
         {/* Pulsante CTA con classe ctaButton */}
         <a href="#" className="ctaButton">
-          Why to choose us
+          Perchè scegliere Noi
         </a>
       </div>
     </section>
   );
 }
+
+

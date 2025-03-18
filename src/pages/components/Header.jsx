@@ -20,10 +20,10 @@ export default function Header() {
             <Link href="/solutions">Per le Aziende</Link>
           </li>
           <li>
-            <Link href="/company">Chi Siamo</Link>
+            <Link href="/about">Chi Siamo</Link>
           </li>
           <li>
-            <Link href="/resources">Contatti</Link>
+            <Link href="/contact">Contatti</Link>
           </li>
         </ul>
       </nav>
