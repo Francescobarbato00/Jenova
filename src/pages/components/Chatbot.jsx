@@ -23,6 +23,18 @@ export default function Chatbot() {
     }
   }, [messages]);
 
+  // Blocca lo scroll del body quando il chatbot è aperto
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
   const handleSendMessage = (question) => {
     setMessages([...messages, { text: question, sender: "user" }]);
     setTimeout(() => {
@@ -47,7 +59,7 @@ export default function Chatbot() {
       {isOpen && (
         <div className="chatbot-box fixed bottom-16 right-6 w-80 bg-white shadow-xl rounded-lg border border-gray-200 overflow-hidden animate-fadeIn">
           {/* Intestazione */}
-          <div className="bg-blue-600 text-white p-4 flex justify-between items-center">
+          <div className="header bg-blue-600 text-white p-4 flex justify-between items-center">
             <span className="font-bold">Chat with us</span>
             <button onClick={() => setIsOpen(false)}>
               <X size={20} />
@@ -55,13 +67,13 @@ export default function Chatbot() {
           </div>
 
           {/* Messaggi con Auto-Scroll */}
-          <div className="p-4 h-64 overflow-y-auto flex flex-col space-y-3">
+          <div className="messages p-4 h-64 overflow-y-auto flex flex-col space-y-3">
             {messages.map((msg, index) => (
               <div
                 key={index}
                 className={`p-2 rounded-lg max-w-[75%] ${
                   msg.sender === "bot"
-                    ? "bg-gray-200 self-start"
+                    ? "bg-gray-200 self-start text-black"
                     : "bg-blue-500 text-white self-end"
                 }`}
               >
@@ -73,7 +85,7 @@ export default function Chatbot() {
           </div>
 
           {/* Domande Preimpostate */}
-          <div className="p-4 bg-gray-100 border-t">
+          <div className="predefined p-4 bg-gray-100 border-t">
             <span className="block text-gray-700 mb-2 font-semibold">Quick Questions:</span>
             <div className="flex flex-wrap gap-2">
               {predefinedQuestions.map((question, index) => (
@@ -117,16 +129,15 @@ export default function Chatbot() {
             border-radius: 0;
             border: none;
             box-shadow: none;
-            /* Utilizza flex per distribuire le sezioni in verticale */
             display: flex;
             flex-direction: column;
           }
-          /* Regola l'altezza dell'area messaggi, sottraendo l'altezza dell'header e della sezione quick questions */
-          .chatbot-box > div:nth-child(2) {
+          /* Regola l'altezza dell'area messaggi in mobile */
+          .chatbot-box .messages {
             height: calc(100vh - 120px);
           }
-          /* Posiziona l'header in modo che sia sempre visibile in cima */
-          .chatbot-box > div:first-child {
+          /* Assicura che l'intestazione rimanga visibile in cima */
+          .chatbot-box .header {
             position: relative;
             z-index: 10000;
           }
